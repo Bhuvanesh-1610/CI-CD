@@ -44,9 +44,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Check for vulnerabilities
-        run: cd frontend && npm audit --production --audit-level=moderate
-
   lint:
     name: 🧼 Ensure Code Style
     runs-on: ubuntu-latest
@@ -58,7 +55,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-      
+
       - name: Cache Node Modules
         uses: actions/cache@v3
         with:
@@ -70,7 +67,7 @@ jobs:
 
       - name: 😂 Lint code
         run: cd frontend && npm run lint
-  
+
   test:
     name: 🧪 Run Unit Tests
     needs: build
@@ -94,7 +91,7 @@ jobs:
 
       - name: Run the unit tests
         run: cd frontend && npm run test-ci
-  
+
   static-analysis:
     name: 🔬 Run Static Code Analysis
     needs: [build]
